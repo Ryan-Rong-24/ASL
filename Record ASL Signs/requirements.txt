@@ -1,0 +1,2 @@
+notebook==6.5.2
+opencv-python==4.7.0.68
