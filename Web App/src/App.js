@@ -19,7 +19,7 @@ const App = () => {
       "method": "POST",
       "timeout": 0,
       "headers": {
-        "Authorization": "Bearer hCptjqtf8JGkLxBORlensOs6k6KeUFI2"
+        "Authorization": "Bearer XXX"
       },
       "data": form
     };
@@ -59,7 +59,7 @@ const App = () => {
   
       const data = photo.toDataURL('image/jpeg');
 
-      if(count<120){
+      if(count<128){
         var byteString = data.split(',')[1];
         // separate out the mime component
         var mimeString = data.split(',')[0].split(':')[1].split(';')[0];
