@@ -1,6 +1,6 @@
 import os
 
-path = 'MP_Data'
+path = 'MSASL'
 
 count = 0
 count_vids = 0

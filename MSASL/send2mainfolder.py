@@ -10,7 +10,6 @@ msasl_train_json = json.load(open(f'MSASL_{dataset}.json'))
 synonym = json.load(open("MSASL_synonym.json"))
 
 
-# selected_words = ['help','thank you','hello','my','name','can','you','how are you','phone','number','what','me','bye','sorry','hamburger','france fries']
 selected_words = json.load(open("MSASL_classes.json"))
 
 freq_per_vid = {}
@@ -34,7 +33,6 @@ while i < len(msasl_train_json):
             if label in arr:
                 temp = arr[0]
                 break
-
 
         print(f'{label} found synonym {temp}')
         label = temp

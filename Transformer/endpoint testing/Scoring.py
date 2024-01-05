@@ -41,7 +41,6 @@ class PositionalEmbedding(layers.Layer):
     def get_config(self):
         config = super().get_config()
         config.update({
-#             "position_embeddings": self.position_embeddings,
             "sequence_length": self.sequence_length,
             "output_dim": self.output_dim,
         })
@@ -79,10 +78,6 @@ class TransformerEncoder(layers.Layer):
             "embed_dim": self.embed_dim,
             "dense_dim": self.dense_dim,
             "num_heads": self.num_heads,
-#             "attention": self.attention,
-#             "dense_proj": self.dense_proj,
-#             "layernorm_1": self.layernorm_1,
-#             "layernorm_2": self.layernorm_2,
         })
         return config
 
@@ -126,19 +121,16 @@ class InferenceModel():
         prediction = self.model.predict(inputs)[0]
         return prediction
 
-
-
 def init():
     global model
     global actions
     global MAX_SEQ_LENGTH
     global NUM_FEATURES
     global sequence_length
-    MAX_SEQ_LENGTH = 60
+    MAX_SEQ_LENGTH = 128
     NUM_FEATURES = 258
-    sequence_length = 60
-    actions = ['can','you','help','me','your','name','what','hamburger','french fries','hello','bye','excuse me','sorry','water','thanks','yesterday']
-    model_path = os.path.join(os.getenv("AZUREML_MODEL_DIR"), "transformer_model_withface_seq60_16actions","transformer_model_withface_seq60_16actions")
+    sequence_length = 128
+    model_path = os.path.join(os.getenv("AZUREML_MODEL_DIR"), "transformer_model","transformer_model")
     model = InferenceModel(model_path) # arg: load path
 
     global mp_hands 
@@ -156,7 +148,7 @@ def run(request):
         return AMLResponse(f"Unsupported verb: {request.method}", 400)
 
     image_list = []
-    for i in range(0,60,2):
+    for i in range(128):
         image_list.append(request.files[f'image{i}'])
 
     # try:
